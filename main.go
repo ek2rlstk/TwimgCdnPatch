@@ -28,8 +28,8 @@ var (
 
 type args struct {
 	Help      bool `cli:"h,help"      usage:"도움말을 표시합니다"`
-	Install   bool `cli:"i,install"   usage:"twimg dns 패치를 합니다"`
-	Uninstall bool `cli:"u,uninstall" usage:"twimg dns 패치를 제거합니다"`
+	Install   bool `cli:"i,install"   usage:"Twvideo dns 패치를 합니다"`
+	Uninstall bool `cli:"u,uninstall" usage:"Twvideo dns 패치를 제거합니다"`
 }
 
 func (args *args) AutoHelp() bool {
