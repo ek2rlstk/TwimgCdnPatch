@@ -9,14 +9,14 @@ import (
 	"strings"
 	"sync"
 	"time"
-	
+
 	"gopkg.in/cheggaaa/pb.v1"
 )
 
 type cdnTestResult struct {
-	Addr		net.IP
-	Failed		bool
-	TotalTime	uint64
+	Addr      net.IP
+	Failed    bool
+	TotalTime uint64
 }
 
 func getBestCdn(addrs []net.IP) string {
@@ -29,10 +29,10 @@ func getBestCdn(addrs []net.IP) string {
 	bar.SetMaxWidth(80)
 
 	bar.ShowElapsedTime = true
-	bar.ShowFinalTime	= false
-	bar.ShowSpeed		= false
-	bar.ShowTimeLeft	= false
-	
+	bar.ShowFinalTime = false
+	bar.ShowSpeed = false
+	bar.ShowTimeLeft = false
+
 	bar.Set(0)
 	bar.Start()
 
@@ -49,14 +49,14 @@ func getBestCdn(addrs []net.IP) string {
 	i := 0
 	for i < len(testResult) {
 		if testResult[i].Failed {
-			copy(testResult[i:], testResult[i + 1:])
-			testResult = testResult[:len(testResult) - 1]
+			copy(testResult[i:], testResult[i+1:])
+			testResult = testResult[:len(testResult)-1]
 		} else {
 			i++
 		}
 	}
 
-	sort.Slice(testResult, func (a, b int) bool { return testResult[a].TotalTime < testResult[b].TotalTime })
+	sort.Slice(testResult, func(a, b int) bool { return testResult[a].TotalTime < testResult[b].TotalTime })
 
 	for _, r := range testResult {
 		fmt.Printf("%15s / %7.2d ms\n", r.Addr.String(), r.TotalTime)
@@ -73,15 +73,17 @@ func cdnTest(g *sync.WaitGroup, index int, r *cdnTestResult, bar *pb.ProgressBar
 		bar.Increment()
 		g.Done()
 	}()
-	
+
 	r.Failed = true
-	
-	client := http.Client {
-		Timeout   : httpTimeout * time.Second,
-		Transport : &http.Transport {
-			Dial				: func(network, addr string) (net.Conn, error) { return net.Dial(network, strings.ReplaceAll(addr, twimgHostName, r.Addr.String())) },
-			IdleConnTimeout		: httpTimeout * time.Second,
-			DisableKeepAlives	: true,
+
+	client := http.Client{
+		Timeout: httpTimeout * time.Second,
+		Transport: &http.Transport{
+			Dial: func(network, addr string) (net.Conn, error) {
+				return net.Dial(network, strings.ReplaceAll(addr, twimgHostName, r.Addr.String()))
+			},
+			IdleConnTimeout:   httpTimeout * time.Second,
+			DisableKeepAlives: true,
 		},
 	}
 
@@ -99,7 +101,7 @@ func cdnTest(g *sync.WaitGroup, index int, r *cdnTestResult, bar *pb.ProgressBar
 		}
 		defer hres.Body.Close()
 
-		if !strings.HasPrefix(hres.Header.Get("content-type"), "image") {
+		if !strings.HasPrefix(hres.Header.Get("content-type"), "video") {
 			return
 		}
 

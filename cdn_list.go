@@ -8,7 +8,7 @@ import (
 )
 
 type resolutions struct {
-	IPAdddress string `json:"ip_address"`
+	IPAdddress   string `json:"ip_address"`
 	LastResolved string `json:"last_resolved"`
 }
 type threatCrowdAPIResult struct {
@@ -16,7 +16,7 @@ type threatCrowdAPIResult struct {
 }
 
 func getAddresses() (addr []net.IP) {
-	hres, err := http.Get("https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=pbs.twimg.com")
+	hres, err := http.Get("https://www.threatcrowd.org/searchApi/v2/domain/report/?domain=video.twimg.com")
 	if err != nil {
 		panic(err)
 	}
@@ -29,7 +29,7 @@ func getAddresses() (addr []net.IP) {
 	}
 
 	// 1년
-	minDate := time.Now().Add((time.Duration)(-365 * 24) * time.Hour)
+	minDate := time.Now().Add((time.Duration)(-365*24) * time.Hour)
 
 	for _, resolution := range res.Resolutions {
 		lastResolved, err := time.Parse("2006-01-02", resolution.LastResolved)
