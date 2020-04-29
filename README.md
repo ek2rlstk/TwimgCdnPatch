@@ -1,4 +1,4 @@
-# 트위터 이미지 속도 패치
+# 트위터 미디어 속도 패치
 
 - 이 레포지토리는 [sokcuri/TwimgSpeedPatch](https://github.com/sokcuri/TwimgSpeedPatch) 를 바탕으로 하고 있습니다.
 
