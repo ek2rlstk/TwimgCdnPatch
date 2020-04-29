@@ -125,9 +125,6 @@ func patch(args *args) {
 			panic("CDN 테스트를 실패하였습니다.\n나중에 다시 시도해주세요.")
 		}
 
-		if len(lines) > 0 && strings.TrimSpace(lines[len(lines)-1]) != "" {
-			lines = append(lines, "")
-		}
 		lines = append(lines, fmt.Sprintf("%s\t%s", bestCdnAddr, twVideoHostName))
 		println("TwVideo cdn 을 패치하였습니다.")
 		println("최적의 cdn : " + bestCdnAddr)
@@ -143,7 +140,6 @@ func patch(args *args) {
 
 	if patched {
 		println("TwMedia cdn 패치를 제거하였습니다.")
-	} else {
 	}
 
 }
