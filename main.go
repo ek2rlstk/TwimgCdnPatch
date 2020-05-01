@@ -99,10 +99,10 @@ func patch(args *args) {
 		}
 	} else {
 		println("TwImage cdn 서버 정보를 가져오고 있습니다.")
-		hosts := getAddressesI()
+		hosts := getAddresses(twimgHostName)
 
 		println("가장 연결 상태가 좋은 CDN 을 찾고 있습니다")
-		bestCdnAddr = getBestCdnI(hosts)
+		bestCdnAddr = getBestCdn(hosts, twimgTestURI)
 
 		if bestCdnAddr == "" {
 			panic("CDN 테스트를 실패하였습니다.\n나중에 다시 시도해주세요.")
@@ -116,10 +116,10 @@ func patch(args *args) {
 		println("최적의 cdn : " + bestCdnAddr)
 
 		println("TwVideo cdn 서버 정보를 가져오고 있습니다.")
-		hosts = getAddressesV()
+		hosts = getAddresses(twVideoHostName)
 
 		println("가장 연결 상태가 좋은 CDN 을 찾고 있습니다")
-		bestCdnAddr = getBestCdnV(hosts)
+		bestCdnAddr = getBestCdn(hosts, twVideoTestURI)
 
 		if bestCdnAddr == "" {
 			panic("CDN 테스트를 실패하였습니다.\n나중에 다시 시도해주세요.")
