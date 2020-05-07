@@ -6,6 +6,10 @@
 
 - 이 프로그램은 [GNU GENERAL PUBLIC LICENSE v3.0](LICENSE) 로 배포됩니다.
 
+## GUI가 필요하다면...
+
+https://github.com/ek2rlstk/TwimgSpeedPatch
+
 ## 패치 방법 (Windows)
 
 1. [여기](https://github.com/ek2rlstk/TwimgCdnPatch/releases/latest) 에서 파일을 다운로드 합니다.
