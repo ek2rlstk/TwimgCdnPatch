@@ -13,7 +13,7 @@ import (
 
 const (
 	twimgHostName   = "pbs.twimg.com"
-	twimgTestURI    = "https://pbs.twimg.com/media/CgAc2lSUMAA30oE.jpg:orig"
+	twimgTestURI    = "https://pbs.twimg.com/media/Emsi3vuUcAIwZxa.jpg:orig"
 	twVideoHostName = "video.twimg.com"
 	twVideoTestURI  = "https://video.twimg.com/ext_tw_video/1251066844548489216/pu/vid/1280x720/qFITDS_AeTMnKW49.mp4"
 
